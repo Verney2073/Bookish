@@ -1,14 +1,14 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Bookish.Models;
 
 namespace Bookish.Controllers;
 
-public class HomeController : Controller
+public class LibraryController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<LibraryController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public LibraryController(ILogger<LibraryController> logger)
     {
         _logger = logger;
     }
@@ -18,11 +18,12 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Privacy()
+    public IActionResult Books()
     {
-        return View();
-    }
+        // LibraryAddTest.Main();
 
+        return View(new CatalogueViewModel());
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

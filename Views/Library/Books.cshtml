@@ -1,0 +1,57 @@
+@model CatalogueViewModel
+
+@{
+    ViewData["Title"] = "Book catalogue";
+    var ourCatalogueSorter = Model.SortBookTitles;
+}
+
+@functions {
+    public void GetHello()
+    {
+        Console.WriteLine("Hello");
+    }
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>List of all books in catalogue Class:</p>
+
+<button OnClick="ourCatalogueSorter()">Sort Alphabetically </button>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Publication Year</th>
+    </tr>
+    @foreach (Catalogue bookItem in Model.OurCatalogue)
+    {
+        <tr>
+            <td>@bookItem.Title</td>
+            <td>@bookItem.Author</td>
+            <td>@bookItem.PublicationYear</td>
+        </tr>
+    }
+</table>
+
+
+
+
+@* <table>
+<tr>
+<th>Company</th>
+<th>Contact</th>
+<th>Country</th>
+</tr>
+<tr>
+<td>Alfreds Futterkiste</td>
+<td>Maria Anders</td>
+<td>Germany</td>
+</tr>
+<tr>
+<td>Centro comercial Moctezuma</td>
+<td>Francisco Chang</td>
+<td>Mexico</td>
+</tr>
+</table>
+*@
