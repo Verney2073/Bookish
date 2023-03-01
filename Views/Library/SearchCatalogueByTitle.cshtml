@@ -1,0 +1,27 @@
+@model string
+
+@{
+    ViewData["Title"] = "Book catalogue";
+
+}
+
+
+<h1>@ViewData["Title"]</h1>
+
+<p>@Model</p>
+
+@* <table>
+<tr>
+<th>Title</th>
+<th>Author</th>
+<th>Publication Year</th>
+</tr>
+@foreach (Catalogue bookItem in Model)
+{
+<tr>
+<td>@bookItem.Title</td>
+<td>@bookItem.Author</td>
+<td>@bookItem.PublicationYear</td>
+</tr>
+}
+</table> *@

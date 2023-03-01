@@ -1,22 +1,17 @@
-@model List<Catalogue>
+@model List<Catalogue>;
 
-@{
-    ViewData["Title"] = "Book catalogue";
+<p>Search by book title:</p>
 
-}
+<form asp-controller="Library" asp-action="GetBookByTitle">
+    <p>
+        Title: <input type="text" name="SearchString" />
 
-@functions {
-    public void GetHello()
-    {
-        Console.WriteLine("Hello");
-    }
-}
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 
-<h1>@ViewData["Title"]</h1>
 
-<p>List of all books in catalogue Class:</p>
-
-<button OnClick="@GetHello">Sort Alphabetically </button>
+<p>List of all books that meet your search criteria:</p>
 
 <table>
     <tr>
