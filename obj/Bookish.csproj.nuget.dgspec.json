@@ -10,11 +10,11 @@
         "projectUniqueName": "C:\\Training\\Bookish\\Bookish.csproj",
         "projectName": "Bookish",
         "projectPath": "C:\\Training\\Bookish\\Bookish.csproj",
-        "packagesPath": "C:\\Users\\jamtri\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\josfry\\.nuget\\packages\\",
         "outputPath": "C:\\Training\\Bookish\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jamtri\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\josfry\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"

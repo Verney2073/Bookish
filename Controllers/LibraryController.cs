@@ -4,12 +4,20 @@ using Bookish.Models;
 
 namespace Bookish.Controllers;
 
+public interface IRetrieveList
+{
+    List<Catalogue> RetrieveList();
+}
+
 public class LibraryController : Controller
 {
     private readonly ILogger<LibraryController> _logger;
 
-    public LibraryController(ILogger<LibraryController> logger)
+    private readonly IRetrieveList _myService;
+
+    public LibraryController(IRetrieveList myService, ILogger<LibraryController> logger)
     {
+        _myService = myService;
         _logger = logger;
     }
 
@@ -22,8 +30,7 @@ public class LibraryController : Controller
     {
         //context is an instance of our SQL database. 
         //context.catalogue is the Catalogue table from our SQL database
-        var context = new BookishContext();
-        var catalogueList = context.Catalogue.ToList();
+        var catalogueList = _myService.RetrieveList();
 
         return View(catalogueList);
     }
@@ -57,21 +64,36 @@ public class LibraryController : Controller
 
     public IActionResult GetBookByTitle(string SearchString) //take in parameter from getbookby title here?
     {
-        using (var context = new BookishContext()) 
-        {
-            var bookList = context.Catalogue.ToList();
+        var bookList = _myService.RetrieveList();
+        var selectedBookList = new List<Catalogue>();
 
-            
-            var selectedBookList = new List<Catalogue>();
+        if (String.IsNullOrEmpty(SearchString))
+        {
+            selectedBookList = bookList;
+        }
+        else
+        {
             foreach (var item in bookList)
             {
-                if (item.Title == SearchString)
+                if (item.Title.ToLower() == SearchString.ToLower())
                 {
                     selectedBookList.Add(item);
                 }
             }
-            return View(selectedBookList);
         }
+        return View(selectedBookList);
+    }
+
+    [HttpPost]
+    public IActionResult DeleteFromCatalogue(int id)
+    {
+        using (var context = new BookishContext())
+        {
+            var ourBook = context.Catalogue.Find(id);
+            context.Catalogue.Remove(ourBook);
+            context.SaveChanges();
+        }
+        return RedirectToAction("Books");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

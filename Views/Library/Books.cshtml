@@ -16,10 +16,26 @@
 
 <p>List of all books in catalogue Class:</p>
 
-<button OnClick="@GetHello">Sort Alphabetically </button>
+@* <!-- use asp-action for the button? -->
+<form asp-controller="Library" asp-action="DeleteFromCatalogue" method="post">
+<label>
+Choose a book to Delete
+<input name="title" type="text" asp-for="Title" />
+</label>
+<button type="submit">Delete</button>
+</form> *@
+
+<form asp-controller="Library" asp-action="DeleteFromCatalogue" method="post">
+    <p>
+        Book id: <input type="text" name="id" />
+
+        <input type="submit" value="Delete" />
+    </p>
+</form>
 
 <table>
     <tr>
+        <th>Catalogue ID</th>
         <th>Title</th>
         <th>Author</th>
         <th>Publication Year</th>
@@ -27,6 +43,7 @@
     @foreach (Catalogue bookItem in Model)
     {
         <tr>
+            <td>@bookItem.Id</td>
             <td>@bookItem.Title</td>
             <td>@bookItem.Author</td>
             <td>@bookItem.PublicationYear</td>

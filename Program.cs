@@ -1,7 +1,11 @@
+using Bookish;
+using Bookish.Controllers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IRetrieveList, RetrieveCatalogueList>();
 
 var app = builder.Build();
 
