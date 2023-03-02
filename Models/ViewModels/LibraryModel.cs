@@ -11,11 +11,7 @@ public class Users
     public int PhoneNumber { get; set; }
 
 }
-public class Book
-{
-    public int Id { get; set; }
-    public string Condition { get; set; }
-}
+
 
 public class Loan
 {

@@ -31,6 +31,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlicmFyeVxDcmVhdGVDYXRhbG9ndWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Training/Bookish/Views/Library/CreateCopyOfBook.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlicmFyeVxDcmVhdGVDb3B5T2ZCb29rLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Training/Bookish/Views/Library/GetBookByTitle.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlicmFyeVxHZXRCb29rQnlUaXRsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

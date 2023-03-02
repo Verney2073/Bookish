@@ -18409,6 +18409,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Training\\Bookish\\Views\\Library\\CreateCopyOfBook.cshtml",
+      "TargetPath": "Views\\Library\\CreateCopyOfBook.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Training\\Bookish\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"

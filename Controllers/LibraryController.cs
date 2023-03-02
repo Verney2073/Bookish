@@ -39,9 +39,6 @@ public class LibraryController : Controller
     {
         return View();
     }
-
-
-
     // defines that the text within HTTPpost is performing a post action 
     [HttpPost]
     public IActionResult AddToCatalogue(CatalogueRequestModel catalogueRequest)
@@ -108,6 +105,12 @@ public class LibraryController : Controller
         }
         return RedirectToAction("Books");
     }
+
+    public IActionResult CreateCopyOfBook()
+    {
+        return View();
+    }
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

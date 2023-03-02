@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Bookish.Models;
 
 public class Catalogue
@@ -6,8 +8,7 @@ public class Catalogue
     public string Title { get; set; }
     public string Author { get; set; }
     public int PublicationYear { get; set; }
-
-
+    public ICollection<Book> Books { get; set; }
 
     // public List<Catalogue> CatalogueViewModel()
     // {
