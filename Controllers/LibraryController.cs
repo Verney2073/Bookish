@@ -56,6 +56,19 @@ public class LibraryController : Controller
                 PublicationYear = catalogueRequest.PublicationYear
             };
 
+            if (!ModelState.IsValid)
+            {
+                string allErrorsStr = "";
+                foreach (var item in ModelState.ToList())
+                {
+                    if (item.Value.Errors.Any())
+                    {
+                        allErrorsStr += item.Value.Errors[0].ErrorMessage + "\n";
+                    }
+                }
+                return BadRequest(allErrorsStr);
+            }
+
             context.Catalogue.Add(book);
             context.SaveChanges();
         }
