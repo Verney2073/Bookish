@@ -9,15 +9,23 @@ public interface IRetrieveList
     List<Catalogue> RetrieveList();
 }
 
+public interface IRetrieveListBooks
+{
+    List<string> RetrieveBooksList();
+}
 public class LibraryController : Controller
 {
     private readonly ILogger<LibraryController> _logger;
 
     private readonly IRetrieveList _myService;
 
-    public LibraryController(IRetrieveList myService, ILogger<LibraryController> logger)
+    private readonly IRetrieveListBooks _myServiceBookList;
+
+    //this IRetrieveList is retrieved by the 'AddTransient()' function in Program.CS which provides an instance of a Class to myService
+    public LibraryController(IRetrieveList myService, IRetrieveListBooks myServiceBookList, ILogger<LibraryController> logger)
     {
         _myService = myService;
+        _myServiceBookList = myServiceBookList;
         _logger = logger;
     }
 
@@ -71,7 +79,6 @@ public class LibraryController : Controller
         }
         return RedirectToAction("Books");
     }
-
     public IActionResult GetBookByTitle(string SearchString) //take in parameter from getbookby title here?
     {
         var bookList = _myService.RetrieveList();
@@ -100,6 +107,7 @@ public class LibraryController : Controller
         using (var context = new BookishContext())
         {
             var ourBook = context.Catalogue.Find(id);
+            //string res = Array.Find(arr, ele => ele.StartsWith("t",
             context.Catalogue.Remove(ourBook);
             context.SaveChanges();
         }
@@ -128,57 +136,13 @@ public class LibraryController : Controller
             return RedirectToAction("CreateCopyOfBook");
         }
     }
-
-
     public IActionResult BookList()
     {
-        using (var context = new BookishContext())
-        {
-            var catalogue = context.Catalogue;
-            var book = context.Books;
+        var ourBookList = _myServiceBookList.RetrieveBooksList();
 
-            var query = book.GroupJoin(catalogue,
-            //where to join
-            book => book.Catalogue_id,
-            catalogue => catalogue.Id,
-            (book, bookGroup) => new
-            {
-                BookItem = book.Catalogue,
-                BookCondition = book.Condition
-            });
-
-            var bookList = new List<string>();
-
-            foreach (var ourBook in query)
-            {
-                bookList.Add($"{ourBook.BookItem.Title}, {ourBook.BookItem.Author}, {ourBook.BookItem.PublicationYear} and {ourBook.BookCondition}");
-            }
-
-            return View(bookList);
-
-            // var innerJoinQuery =
-            //     from catalogue in Catalogue
-            //     join prod in products on category.ID equals prod.CategoryID
-            //     select new { ProductName = prod.Name, Category = category.Name };
+        return View(ourBookList);
 
 
-
-            //     var query = from item in context.Books
-            //             join item in context.Books on context.Catalogue.Id equals item.Catalogue_id
-            //             select new
-            //             {
-            //                 Condition = item.Condition // Add a new column for the book condition
-            //             };
-
-
-            // // Project the anonymous type back into Catalogue objects
-            // var sortedList = query.ToList().Select(x =>
-            // {
-            //     var catalogue = x.Catalogue;
-            //     catalogue.Condition = x.Condition;
-            //     return catalogue;
-            // }).ToList();
-        }
     }
     public IActionResult CatalogueQuantities()
     {
@@ -215,5 +179,5 @@ public class LibraryController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
-
 }
+

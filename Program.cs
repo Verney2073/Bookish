@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IRetrieveList, RetrieveCatalogueList>();
+builder.Services.AddTransient<IRetrieveListBooks, RetrieveBookCopyList>();
 
 var app = builder.Build();
 
