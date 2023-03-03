@@ -33,7 +33,7 @@ Choose a book to Delete
         <th>Title</th>
         <th>Author</th>
         <th>Publication Year</th>
-        <th>Copies available</th>
+        <th>Options</th>
     </tr>
     @foreach (Catalogue bookItem in Model)
     {
@@ -42,7 +42,13 @@ Choose a book to Delete
             <td>@bookItem.Title</td>
             <td>@bookItem.Author</td>
             <td>@bookItem.PublicationYear</td>
-
+            <td>
+                @using (Html.BeginForm("DeleteFromCatalogue", "Library"))
+                {
+                    <input type="hidden" name="Id" value="@bookItem.Id" />
+                    <input type="submit" value="Delete" />
+                }
+            </td>
         </tr>
     }
 </table>
