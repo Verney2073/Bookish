@@ -1,0 +1,34 @@
+@model List<string>
+
+@{
+    ViewData["Title"] = "Book list";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<p>List of all book copies from the BookList:</p>
+
+@foreach (var bookInfo in Model)
+    {
+            <p>@bookInfo</p>
+    }
+@*  <table>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Publication Year</th>
+        <th>Condition</th>
+    </tr>
+    @foreach (var bookCopy in Model)
+    {
+        <tr>
+            <td>@bookCopy.Catalogue.Title</td>
+            <td>@bookCopy.Catalogue.Author</td>
+            <td>@bookCopy.Catalogue.PublicationYear</td>
+            <td>@bookCopy.Condition</td>
+        </tr>
+    }
+</table> -->
+ *@
+<!--

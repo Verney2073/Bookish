@@ -1,0 +1,15 @@
+@model List<string>
+
+@{
+    ViewData["Title"] = "Catalogue quantities list";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<p>List of all book copies from the BookList:</p>
+
+@foreach (var catalogueItemInfo in Model)
+{
+    <p>@catalogueItemInfo</p>
+}

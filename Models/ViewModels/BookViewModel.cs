@@ -9,6 +9,7 @@ public class Book
 
     // FOREIGN KEY (Catalogue_id) REFERENCES Catalogue(id)
     public int Catalogue_id { get; set; }
+    
     [ForeignKey("Catalogue_id")]
     public Catalogue Catalogue { get; set; }
 }

@@ -5,12 +5,6 @@
 
 }
 
-@functions {
-    public void GetHello()
-    {
-        Console.WriteLine("Hello");
-    }
-}
 
 <h1>@ViewData["Title"]</h1>
 
@@ -39,6 +33,7 @@ Choose a book to Delete
         <th>Title</th>
         <th>Author</th>
         <th>Publication Year</th>
+        <th>Copies available</th>
     </tr>
     @foreach (Catalogue bookItem in Model)
     {
@@ -47,6 +42,7 @@ Choose a book to Delete
             <td>@bookItem.Title</td>
             <td>@bookItem.Author</td>
             <td>@bookItem.PublicationYear</td>
+            <td></td>
         </tr>
     }
 </table>
